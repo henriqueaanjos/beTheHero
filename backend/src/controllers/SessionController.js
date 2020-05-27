@@ -6,6 +6,6 @@ module.exports = {
         if(!session){
             return response.status(400).json({ error: 'No ONG found with this ID'});
         }
-        return response.json({session});
+        return response.json(session);
     }
 }

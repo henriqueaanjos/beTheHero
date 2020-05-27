@@ -8,15 +8,24 @@ module.exports = {
     },
 
     async create(request,response) {
-        const {name, email, whatsapp,city, uf} = request.body;
-    
+        const {name, email, whatsApp,city, uf} = request.body;
+        if(name == '')
+            return response.json({"Error": "Error - Campo Nome da ONG vazio, verifique novamente"});
+        if(email == '')
+            return response.json({"Error": "Error - Campo E-mail vazio, verifique novamente"});
+        if(whatsApp == '')
+            return response.json({"Error": "Error - Campo WhatsApp vazio, verifique novamente"});
+        if(city == '')
+            return response.json({"Error": "Error - Campo Cidade vazio, verifique novamente"});
+        if(uf == '')
+            return response.json({"Error": "Error - Campo UF vazio, verifique novamente"});
         const id = crypto.randomBytes(4).toString('Hex');
 
         await connection('ongs').insert({
             id,
             name,
             email,
-            whatsapp,
+            whatsApp,
             city,
             uf,
         });
