@@ -26,8 +26,11 @@ export default function NewIncident(){
             Authorization: ongId,
           }
         });
-        console.log(response.data);
-        history.push('/profile');
+        if(response.data.id == null){
+          alert(`${response.data.Error}`);
+        }else{
+          history.push('/profile');
+        }
       }catch(err){
         alert('Error = Tente novamente');
       }

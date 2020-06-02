@@ -23,6 +23,12 @@ module.exports = {
     async create(request, response){
         const { title, description, value} = request.body;
         const ong_id = request.headers.authorization;
+        if(title == '')
+            return response.json({"Error": "Error - Campo Título do Caso vazio, verifique novamente"});
+        if(description == '')
+            return response.json({"Error": "Error - Campo Descrição vazio, verifique novamente"});
+        if(value == '')
+            return response.json({"Error": "Error - Campo Valor vazio, verifique novamente"});
         const [id] = await connection('incidents').insert({
             title,
             description,
